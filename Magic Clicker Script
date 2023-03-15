@@ -1,0 +1,61 @@
+if game.PlaceId == 9170761016 then
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "Ae Hub | Magic Clicker", HidePremium = false, IntroEnabled = false, IntroText = "Ae Hub", SaveConfig = true, ConfigFolder = "AeConfig"})
+
+-- Values
+_G.autoTap = true;
+_G.autoRebirth = true;
+
+
+-- Function
+
+function autoTap()
+    while _G.autoTap == true do
+        game:GetService("ReplicatedStorage").Remotes.CheckClick:FireServer()
+        wait(.000000000000000000000000000000000000000000000000000000000001)
+     end
+    end
+
+function autoRebirth()
+    while _G.autoRebirth == true do
+        local args = {[1] = "1"}
+        game:GetService("ReplicatedStorage").Remotes.BuyRebirth:FireServer(unpack(args))
+        wait(.0000000000000000000000000000000000000000000000001)
+     end
+    end
+
+
+-- Tabs
+local AUTOFARMTab = Window:MakeTab({
+	Name = "Auto Farm",
+	Icon = "rbxassetid://9191666011",
+	PremiumOnly = false
+})
+
+
+
+-- Toggle   
+
+AUTOFARMTab:AddLabel("Credit: GunandaGaming")
+
+AUTOFARMTab:AddToggle({
+	Name = "Auto Tap",
+	Default = false,
+	Callback = function(Value)
+		_G.autoTap = Value
+        autoTap()
+	end    
+})
+
+AUTOFARMTab:AddToggle({
+	Name = "Auto Rebirth",
+	Default = false,
+	Callback = function(Value)
+		_G.autoRebirth = Value
+        autoRebirth()
+	end    
+})
+
+
+end
+OrionLib:Init()
